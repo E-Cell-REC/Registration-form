@@ -1,4 +1,5 @@
-"use client";
+import { Separator } from "@/components/ui/separator";
+import RegistrationForm from "./registration-form";
 
 const FormPage = () => {
   return (
@@ -10,8 +11,9 @@ const FormPage = () => {
           student entrepreneurs, proudly presented by the{" "}
           <span className="text-foreground font-medium">ECell REC.</span>
         </p>
-        {/* Registratinon Form Component goes here */}
       </div>
+      <Separator />
+      <RegistrationForm />
     </div>
   );
 };
