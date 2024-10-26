@@ -65,6 +65,23 @@ const RegistrationForm = () => {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormDescription>
+                Please enter your email address. This will be used to send you
+                updates.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </form>
     </Form>
   );
