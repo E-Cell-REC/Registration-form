@@ -117,6 +117,22 @@ const RegistrationForm = () => {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="organization"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Organization</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormDescription>
+                Please enter your organization&apos;s name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </form>
     </Form>
   );
