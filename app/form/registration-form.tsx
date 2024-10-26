@@ -49,6 +49,22 @@ const RegistrationForm = () => {
   return (
     <Form {...form}>
       <form className="space-y-8">
+        <FormField
+          control={form.control}
+          name="fullName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Full Name</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormDescription>
+                Please enter your full name. This will go on your certificates.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </form>
     </Form>
   );
