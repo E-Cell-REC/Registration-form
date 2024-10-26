@@ -1,6 +1,6 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -11,10 +11,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDownIcon } from "lucide-react";
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -47,15 +50,30 @@ const registrationFormSchema = z.object({
     .regex(/^\d+$/, "Invalid UTR No. / UPI Ref"),
 });
 
+type RegistrationFormValues = z.infer<typeof registrationFormSchema>;
+
 const RegistrationForm = () => {
-  const form = useForm({
+  const form = useForm<RegistrationFormValues>({
     resolver: zodResolver(registrationFormSchema),
     defaultValues: {},
     mode: "onChange",
   });
+
+  function onSubmit(data: RegistrationFormValues) {
+    console.log(data);
+    toast({
+      title: "You submitted the following values:",
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      ),
+    });
+  }
+
   return (
     <Form {...form}>
-      <form className="space-y-8">
+      <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="fullName"
@@ -177,7 +195,7 @@ const RegistrationForm = () => {
               <FormLabel>What are you expecting from the workshop?</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Tell us a little bit about what you're looking forward to learning and/or doing in the workshop?"
+                  placeholder="what you're looking forward to learning and/or doing in the workshop?"
                   {...field}
                 />
               </FormControl>
@@ -188,6 +206,23 @@ const RegistrationForm = () => {
             </FormItem>
           )}
         />
+        <Separator />
+        <div className="full  text-center">
+          <h3 className="text-md font-medium mb-2 -mt-4">Payment</h3>
+          <Image
+            width={250}
+            height={250}
+            src={`/${(Math.ceil(Math.random() * 10) % 4) + 1}.png`}
+            alt=""
+            className="mx-auto"
+          />
+          <p className="text-muted-foreground text-[13px] mt-2">
+            Scan the above QR Code and make a payment of{" "}
+            <span className="text-sm font-semibold text-blue-600">
+              Rs. 649/-
+            </span>
+          </p>
+        </div>
         <FormField
           control={form.control}
           name="paymentId"
@@ -204,6 +239,7 @@ const RegistrationForm = () => {
             </FormItem>
           )}
         />
+        <Button type="submit">Submit</Button>
       </form>
     </Form>
   );
