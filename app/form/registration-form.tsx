@@ -49,6 +49,8 @@ const registrationFormSchema = z.object({
     .regex(/^\d+$/, "Invalid UTR No. / UPI Ref"),
 });
 
+const imgUrl = `/${(Math.ceil(Math.random() * 10) % 4) + 1}.png`;
+
 type RegistrationFormValues = z.infer<typeof registrationFormSchema>;
 
 const RegistrationForm = () => {
@@ -211,7 +213,7 @@ const RegistrationForm = () => {
           <Image
             width={250}
             height={250}
-            src={`/${(Math.ceil(Math.random() * 10) % 4) + 1}.png`}
+            src={imgUrl}
             alt=""
             className="mx-auto"
           />
