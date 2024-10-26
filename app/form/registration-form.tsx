@@ -11,6 +11,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDownIcon } from "lucide-react";
@@ -163,6 +164,25 @@ const RegistrationForm = () => {
               </div>
               <FormDescription>
                 Please select your area of interest.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="expectations"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>What are you expecting from the workshop?</FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="Tell us a little bit about what you're looking forward to learning and/or doing in the workshop?"
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>
+                Please enter your expectations from the workshop.
               </FormDescription>
               <FormMessage />
             </FormItem>
