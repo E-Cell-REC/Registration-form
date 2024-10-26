@@ -188,6 +188,22 @@ const RegistrationForm = () => {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="paymentId"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Payment ID</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormDescription>
+                Please enter the UTR No. / UPI Ref no. of the payment.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </form>
     </Form>
   );
