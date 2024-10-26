@@ -1,5 +1,6 @@
 "use client";
 
+import { buttonVariants } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -10,7 +11,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ChevronDownIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -128,6 +131,38 @@ const RegistrationForm = () => {
               </FormControl>
               <FormDescription>
                 Please enter your organization&apos;s name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="areaOfInterest"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Area of Interest</FormLabel>
+              <div className="relative w-max">
+                <FormControl>
+                  <select
+                    className={cn(
+                      buttonVariants({ variant: "outline" }),
+                      "w-[200px] appearance-none font-normal"
+                    )}
+                    {...field}
+                  >
+                    <option value="Technology">Technology</option>
+                    <option value="Entrepreneurship">Entrepreneurship</option>
+                    <option value="Innovation">Innovation</option>
+                    <option value="Higher Studies">Higher Studies</option>
+                    <option value="Content Creation">Content Creation</option>
+                    <option value="Management">Management</option>
+                  </select>
+                </FormControl>
+                <ChevronDownIcon className="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
+              </div>
+              <FormDescription>
+                Please select your area of interest.
               </FormDescription>
               <FormMessage />
             </FormItem>
