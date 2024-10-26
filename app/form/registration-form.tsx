@@ -37,7 +37,10 @@ const registrationFormSchema = z.object({
     "Management",
   ]),
   expectations: z.string().max(160).min(4),
-  paymentId: z.number().max(999999999999),
+  paymentId: z
+    .string()
+    .length(12, "Invalid UTR No. / UPI Ref")
+    .regex(/^\d+$/, "Invalid UTR No. / UPI Ref"),
 });
 
 const RegistrationForm = () => {
