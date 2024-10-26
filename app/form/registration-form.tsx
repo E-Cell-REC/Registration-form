@@ -13,11 +13,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDownIcon } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -50,26 +50,56 @@ const registrationFormSchema = z.object({
     .regex(/^\d+$/, "Invalid UTR No. / UPI Ref"),
 });
 
+const imgUrl = `/${(Math.ceil(Math.random() * 10) % 4) + 1}.png`;
+
 type RegistrationFormValues = z.infer<typeof registrationFormSchema>;
 
+const defaultValues: RegistrationFormValues = {
+  fullName: "",
+  email: "",
+  phoneNumber: "",
+  title: "",
+  organization: "",
+  areaOfInterest: "Technology",
+  expectations: "",
+  paymentId: "",
+};
+
 const RegistrationForm = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+
   const form = useForm<RegistrationFormValues>({
     resolver: zodResolver(registrationFormSchema),
-    defaultValues: {},
+    defaultValues: defaultValues,
     mode: "onChange",
   });
 
-  function onSubmit(data: RegistrationFormValues) {
+  const onSubmit = async (data: RegistrationFormValues) => {
     console.log(data);
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data, null, 2),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setSuccess(true);
+      } else {
+        console.error("Error submitting form:", result.error);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Form {...form}>
@@ -212,7 +242,7 @@ const RegistrationForm = () => {
           <Image
             width={250}
             height={250}
-            src={`/${(Math.ceil(Math.random() * 10) % 4) + 1}.png`}
+            src={imgUrl}
             alt=""
             className="mx-auto"
           />
@@ -239,7 +269,15 @@ const RegistrationForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isSubmitting} className="">
+          {isSubmitting ? "Submitting..." : "Submit"}
+        </Button>
+        {success && (
+          <p className="mt-4 text-green-600">
+            Thank you! We&apos;ll send you a confirmation by tomorrow, over the
+            email, once we verify your payment status.
+          </p>
+        )}
       </form>
     </Form>
   );
