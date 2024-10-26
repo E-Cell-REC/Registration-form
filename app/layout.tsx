@@ -6,8 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Eureka Registration",
-  description: "Register for ECell REC's biggest event for entrepresneurs",
+  title: "Illuminate Workshop Registration",
+  description: "Register for ECell REC's biggest event for entrepreneurs",
 };
 
 export default function RootLayout({

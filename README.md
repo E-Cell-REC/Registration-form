@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/)(14.2.5) project.
+This is a [Next.js](https://nextjs.org/)(14.2.16) project.
 
 ## Running the project
 
