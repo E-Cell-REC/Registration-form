@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDownIcon } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -70,12 +71,10 @@ const RegistrationForm = () => {
 
   const form = useForm<RegistrationFormValues>({
     resolver: zodResolver(registrationFormSchema),
-    defaultValues: {},
     defaultValues: defaultValues,
     mode: "onChange",
   });
 
-  function onSubmit(data: RegistrationFormValues) {
   const onSubmit = async (data: RegistrationFormValues) => {
     console.log(data);
     setIsSubmitting(true);
