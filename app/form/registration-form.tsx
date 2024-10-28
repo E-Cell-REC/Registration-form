@@ -50,7 +50,7 @@ const registrationFormSchema = z.object({
     .regex(/^\d+$/, "Invalid UTR No. / UPI Ref"),
 });
 
-const imgUrl = `/${(Math.ceil(Math.random() * 10) % 4) + 1}.png`;
+const imgUrl = `/1.png`;
 
 type RegistrationFormValues = z.infer<typeof registrationFormSchema>;
 
@@ -111,7 +111,7 @@ const RegistrationForm = () => {
             <FormItem>
               <FormLabel>Full Name</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} className="border-zinc-300" />
               </FormControl>
               <FormDescription>
                 Please enter your full name. This will go on your certificates.
@@ -127,7 +127,7 @@ const RegistrationForm = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} className="border-zinc-300" />
               </FormControl>
               <FormDescription>
                 Please enter your email address. This will be used to send you
@@ -144,7 +144,7 @@ const RegistrationForm = () => {
             <FormItem>
               <FormLabel>Phone Number</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} className="border-zinc-300" />
               </FormControl>
               <FormDescription>
                 Please enter your phone number in 10 digits
@@ -160,7 +160,7 @@ const RegistrationForm = () => {
             <FormItem>
               <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} className="border-zinc-300" />
               </FormControl>
               <FormDescription>
                 Please enter your title (founder/employee/student/faculty etc.)
@@ -176,7 +176,7 @@ const RegistrationForm = () => {
             <FormItem>
               <FormLabel>Organization</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} className="border-zinc-300" />
               </FormControl>
               <FormDescription>
                 Please enter your organization&apos;s name.
@@ -193,10 +193,10 @@ const RegistrationForm = () => {
               <FormLabel>Area of Interest</FormLabel>
               <div className="relative w-max">
                 <FormControl>
-                  <select
+                  <select 
                     className={cn(
                       buttonVariants({ variant: "outline" }),
-                      "w-[200px] appearance-none font-normal"
+                      "w-[200px] appearance-none font-normal border-zinc-300"
                     )}
                     {...field}
                   >
@@ -224,7 +224,7 @@ const RegistrationForm = () => {
             <FormItem>
               <FormLabel>What are you expecting from the workshop?</FormLabel>
               <FormControl>
-                <Textarea
+                <Textarea className="border-zinc-300"
                   placeholder="what you're looking forward to learning and/or doing in the workshop?"
                   {...field}
                 />
@@ -260,7 +260,7 @@ const RegistrationForm = () => {
             <FormItem>
               <FormLabel>Payment ID</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} className="border-zinc-300" />
               </FormControl>
               <FormDescription>
                 Please enter the UTR No. / UPI Ref no. of the payment.
