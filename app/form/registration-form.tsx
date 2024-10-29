@@ -247,7 +247,7 @@ const RegistrationForm = () => {
             className="mx-auto"
           />
           <p className="text-muted-foreground text-[13px] mt-2">
-            Scan the above QR Code and make a payment of{" "}
+            Scan the above QR Code with <span className="text-sm font-bold text-green-600">Google Pay</span> and make a payment of{" "}
             <span className="text-sm font-semibold text-blue-600">
               Rs. 649/-
             </span>
