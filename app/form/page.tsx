@@ -25,7 +25,7 @@ const FormPage = () => {
               height={100}
               className="mr-4"
             />
-            <h2 className="text-xl -ml-3">Presents</h2>
+            <h2 className="text-xl -ml-3 font-bold text-blue-600"> E-CELL REC Presents</h2>
             </div>
           <div className="mb-5">
         <Image
@@ -33,7 +33,7 @@ const FormPage = () => {
           alt="Illuminate Workshop 2024"
           width={640}
           height={320}
-          className="rounded-lg shadow-sm"
+          className="rounded-lg shadow-md"
           layout="responsive"
         />
           </div>
@@ -49,7 +49,7 @@ const FormPage = () => {
             hands-on experience and sessions led by seasoned entrepreneurs and experts.
           </p>
           <div className="mb-4">
-            <h3 className="text-lg font-semibold">🚀 Workshop Highlights</h3>
+            <h3 className="text-lg font-semibold text-gray-600 mb-1">🚀 Workshop Highlights</h3>
             <ul className="list-disc list-inside ml-4">
               <li>Comprehensive 5-6 hour workshop</li>
               <li>Speaker sessions, case studies, and team activities</li>
@@ -58,7 +58,7 @@ const FormPage = () => {
             </ul>
           </div>
             <div className="mb-4">
-            <span className="inline-block bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">
+            <span className="inline-block bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded hover:shadow-md hover:scale-125 transition cursor-default">
               <span className="font-semibold">Workshop Fee:</span> <span className="line-through text-red-500">₹799</span>(20% off) <span className="text-green-600">₹649</span> per student (inclusive of service tax, certification, and startup kit)
             </span>
             </div>
