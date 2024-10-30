@@ -91,7 +91,7 @@ const RegistrationForm = () => {
 
       const result = await response.json();
       if (result.success) {
-        router.push("/result");
+        router.push("/form/result");
       } else {
         console.error("Error submitting form:", result.error);
       }
