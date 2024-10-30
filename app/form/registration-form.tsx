@@ -20,21 +20,22 @@ import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 const registrationFormSchema = z.object({
   fullName: z
     .string({ required_error: "Name is required." })
-    .min(3, { message: "Name must be atleast 3 characters." }),
+    .min(3, { message: "Name must be at least 3 characters." }),
   email: z.string().email({ message: "Invalid email address." }),
   phoneNumber: z
     .string({ required_error: "Phone number is required." })
     .length(10, { message: "Phone number must be 10 digits." }),
   title: z
     .string({ required_error: "Title is required." })
-    .min(2, { message: "Name must be atleast 2 characters." }),
+    .min(2, { message: "Title must be at least 2 characters." }),
   organization: z
     .string({ required_error: "Organization is required." })
-    .min(2, { message: "Organization must be atleast 2 characters." }),
+    .min(2, { message: "Organization must be at least 2 characters." }),
   areaOfInterest: z.enum([
     "Technology",
     "Entrepreneurship",
@@ -67,7 +68,7 @@ const defaultValues: RegistrationFormValues = {
 
 const RegistrationForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const router = useRouter();
 
   const form = useForm<RegistrationFormValues>({
     resolver: zodResolver(registrationFormSchema),
@@ -90,7 +91,7 @@ const RegistrationForm = () => {
 
       const result = await response.json();
       if (result.success) {
-        setSuccess(true);
+        router.push("/result");
       } else {
         console.error("Error submitting form:", result.error);
       }
@@ -272,12 +273,6 @@ const RegistrationForm = () => {
         <Button type="submit" disabled={isSubmitting} className="">
           {isSubmitting ? "Submitting..." : "Submit"}
         </Button>
-        {success && (
-          <p className="mt-4 text-green-600">
-            Thank you! We&apos;ll send you a confirmation by tomorrow, over the
-            email, once we verify your payment status.
-          </p>
-        )}
       </form>
     </Form>
   );
